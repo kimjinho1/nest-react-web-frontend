@@ -1,7 +1,8 @@
-import UseEffect from "./UseEffect";
+// import UseEffect from "./UseEffect";
+import CleanUp from "./CleanUp";
 
 function App() {
-  return <UseEffect />;
+  return <CleanUp />;
 }
 
 export default App;
