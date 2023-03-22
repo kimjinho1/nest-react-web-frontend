@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Home from "./Home/Home";
 import Navbar from "./Navbar/Navbar";
+import Home from "./Home/Home";
+import MusicDisplay from "./Music/Music";
+import About from "./About/About";
 import ToDo from "./ToDo/ToDo";
 import Authentication from "./Authentication/Authentication";
 
@@ -26,6 +28,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home loginState={loginState} />} />
         <Route path="/todo" element={<ToDo loginState={loginState} />} />
+        <Route
+          path="/music"
+          element={<MusicDisplay loginState={loginState} />}
+        />
+        <Route path="/about" element={<About loginState={loginState} />} />
         <Route
           path="/auth"
           element={
