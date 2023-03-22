@@ -67,14 +67,12 @@ const ToDoFinishButton = styled.button`
 `;
 
 const Footer = styled.p`
-  position: fixed;
+  position: absolute;
   color: white;
   font-size: 20px;
-  bottom: 5px;
+  bottom: 1px;
+  text-align: center;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 const TODOS_KEY = "TODOS";
