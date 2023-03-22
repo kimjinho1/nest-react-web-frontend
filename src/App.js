@@ -1,8 +1,7 @@
-// import UseEffect from "./UseEffect";
-import CleanUp from "./CleanUp";
+import ToDo1 from "./ToDo1";
 
 function App() {
-  return <CleanUp />;
+  return <ToDo1 />;
 }
 
 export default App;
