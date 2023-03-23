@@ -1,6 +1,9 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
+import LeftNavbar from "../components/Navbar/LeftNavbar";
+import RightNavbar from "../components/Navbar/RightNavbar";
+
 const TopNavBar = styled.div`
   width: 100%;
   background: black;
@@ -27,15 +30,8 @@ const NavComponent = styled(NavLink)`
 const Navbar = () => {
   return (
     <TopNavBar>
-      <div>
-        <NavComponent to="/">Home</NavComponent>
-        <NavComponent to="/todo">ToDo</NavComponent>
-        <NavComponent to="/music">Music</NavComponent>
-        <NavComponent to="/about">About</NavComponent>
-      </div>
-      <div>
-        <NavComponent to="/auth">Auth</NavComponent>
-      </div>
+      <LeftNavbar NavComponent={NavComponent}/>
+      <RightNavbar NavComponent={NavComponent}/>
     </TopNavBar>
   );
 };

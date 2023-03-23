@@ -18,12 +18,12 @@ const Button = styled.button`
 const TODOS_KEY = "TODOS";
 
 const GoogleAuthLogout = ({ loginState, USER_TOKEN, setLoginState }) => {
-  const handleLogout = async () => {
+  const handleLogout = () => {
     try {
       if (loginState === true) {
         googleLogout();
-        localStorage.removeItem(USER_TOKEN);
-        localStorage.removeItem(TODOS_KEY);
+        window.localStorage.removeItem(USER_TOKEN);
+        window.localStorage.removeItem(TODOS_KEY);
         setLoginState(false);
         alert("로그아웃 성공");
       }

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import GoogleAuthLogin from "./components/GoogleAuthLogin";
-import GoogleAuthLogout from "./components/GoogleAuthLogout";
+import GoogleAuthLogin from "../components/Authentication/GoogleAuthLogin";
+import GoogleAuthLogout from "../components/Authentication/GoogleAuthLogout";
 
 const API_ID = process.env.REACT_APP_GOOGLE_OAUTH_API_ID;
 const USER_TOKEN = "USER_TOKEN";

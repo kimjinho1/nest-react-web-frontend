@@ -6,8 +6,9 @@ const GoogleAuthLogin = ({ API_ID, USER_TOKEN, setLoginState }) => {
       clientId={`${API_ID}`}
       onSuccess={(res) => {
         alert("로그인 성공");
-        localStorage.setItem(USER_TOKEN, res.credential);
-        // console.log(res);
+        window.localStorage.setItem(USER_TOKEN, res.credential);
+        console.log(window.localStorage.getItem(USER_TOKEN));
+        console.log(res);
         setLoginState(true);
       }}
       onFailure={(res) => alert("로그인 실패")}
