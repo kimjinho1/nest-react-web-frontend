@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Navbar from "./pages/Navbar";
 import Home from "./pages/Home";
-import MusicDisplay from "./pages/Music";
-import About from "./pages/About";
 import ToDo from "./pages/ToDo";
-import Authentication from "./pages/Authentication";
+import MusicDisplay from "./pages/Music";
+import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn";
 
 const USER_TOKEN = "USER_TOKEN";
 
@@ -31,8 +31,9 @@ function App() {
           path="/music"
           element={<MusicDisplay loginState={loginState} />}
         />
-        <Route path="/about" element={<About loginState={loginState} />} />
-        <Route
+        <Route path="/signin" element={<SignIn loginState={loginState} />} />
+        <Route path="/signup" element={<SignUp loginState={loginState} />} />
+        {/* <Route
           path="/auth"
           element={
             <Authentication
@@ -40,7 +41,7 @@ function App() {
               setLoginState={setLoginState}
             />
           }
-        />
+        /> */}
       </Routes>
     </Router>
   );
