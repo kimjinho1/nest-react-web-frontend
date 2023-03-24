@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 const GreetingDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   h1 {
     font-size: 50px;
   }
@@ -8,7 +12,7 @@ const GreetingDiv = styled.div`
 
 const Greeting = ({loginState, toDos}) => {
     return (
-        !loginState === false ? (
+        loginState === false ? (
           <GreetingDiv><h1>로그인하고 오세요</h1></GreetingDiv>
         ) : (
           <GreetingDiv>

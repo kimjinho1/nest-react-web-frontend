@@ -40,8 +40,8 @@ const ToDo = ({ loginState }) => {
     <ToDoDiv>
       <Clock />
       <Greeting loginState={loginState} toDos={toDos}/>
-      <ToDoForm toDo={toDo} setToDo={setToDo} setToDos={setToDos}/>
-      <ToDoList toDos={toDos} setToDos={setToDos}/>
+      {loginState ? <ToDoForm toDo={toDo} setToDo={setToDo} setToDos={setToDos}/> : null}
+      {loginState ? <ToDoList toDos={toDos} setToDos={setToDos}/> : null}
       <Footer />
     </ToDoDiv>
   );
