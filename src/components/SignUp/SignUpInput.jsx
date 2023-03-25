@@ -21,14 +21,26 @@ const StyledInput = styled.input`
   }
 `;
 
-const SignUpInput = ({ placeholder, minLength, maxLength }) => {
+const SignUpInput = ({ props }) => {
+  const onChange = (event) => {
+    const { name, value } = event.target;
+    const nextInputs = {
+      ...props.inputs,
+      [name]: value,
+    };
+    props.setInputs(nextInputs);
+  };
+
   return (
     <InputDiv>
       <StyledInput
         type="text"
-        placeholder={placeholder}
-        minLength={minLength}
-        maxLength={maxLength}
+        onChange={onChange}
+        name={props.name}
+        placeholder={props.placeholder}
+        minLength={props.minLength}
+        maxLength={props.maxLength}
+        value={props.value}
         required
         autoCapitalize="off"
         autoComplete="off"

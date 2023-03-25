@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useState, useEffect } from "react";
 
 import SignUpLabel from "../components/SignUp/SignUpLabel";
 import SignUpInput from "../components/SignUp/SignUpInput";
@@ -16,33 +17,61 @@ const SignUpForm = styled.form`
 `;
 
 const SignUp = ({ loginState }) => {
-  const idInputCheck = (obj) => {
-    // const regExp = "{}[]/?.,;:|)*~`!^-_+┼<>@#$%&'\"\\(=]";
-    const regExp = "{}[]/?.,;:|)*~`!^-+┼<>@#$%&'\"\\(=]";
-    if (regExp.test(obj.value)) {
-      alert("특수문자는 입력하실수 없습니다.");
-      obj.value = obj.value.substring(0, obj.value.length - 1);
-    }
+  const [inputs, setInputs] = useState({ id: "", password: "", nickname: "" });
+  const { id, password, nickname } = inputs;
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    console.log(event.target.id.value);
+    console.log(event.target.password.value);
+    console.log(event.target.nickname.value);
+    setInputs({
+      id: "",
+      password: "",
+      nickname: "",
+    });
   };
 
   return (
     <SignUpDiv>
-      <SignUpForm>
+      <SignUpForm onSubmit={onSubmit}>
         <SignUpLabel text="아이디"></SignUpLabel>
         <SignUpInput
-          placeholder="4~20자리 / 영문, 숫자, 특수문자 '_' 사용가능"
-          minLength="4"
-          maxLength="20"
+          props={{
+            name: "id",
+            placeholder: "4~20자리 / 영문, 숫자, 특수문자 조합",
+            minLength: "4",
+            maxLength: "20",
+            inputs: inputs,
+            setInputs: setInputs,
+            value: id,
+          }}
         />
         <SignUpLabel text="비밀번호"></SignUpLabel>
         <SignUpInput
-          placeholder="8~16자리 / 영문 대소문자, 숫자, 특수문자 조합"
-          minLength="8"
-          maxLength="16"
+          props={{
+            name: "password",
+            placeholder: "8~16자리 / 영문, 숫자, 특수문자 조합",
+            minLength: "8",
+            maxLength: "16",
+            inputs: inputs,
+            setInputs: setInputs,
+            value: password,
+          }}
         />
         <SignUpLabel text="이름"></SignUpLabel>
-        <SignUpInput placeholder="이름 입력" minLength="0" maxLength="20" />
-        <SignUpButton />
+        <SignUpInput
+          props={{
+            name: "nickname",
+            placeholder: "이름 입력",
+            minLength: "1",
+            maxLength: "20",
+            inputs: inputs,
+            setInputs: setInputs,
+            value: nickname,
+          }}
+        />
+        <SignUpButton type="submit" inputs={inputs} />
       </SignUpForm>
     </SignUpDiv>
   );
