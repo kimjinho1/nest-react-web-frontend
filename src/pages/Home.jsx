@@ -8,19 +8,6 @@ const HomeDiv = styled.div`
 `;
 
 const Home = ({ loginState }) => {
-  const f = async () => {
-    const res = await fetch("http://localhost:3000", {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      }
-    })
-    const text = await res.text()
-    console.log(text);
-  };
-  f();
-
   return (
     <HomeDiv>
       {!loginState ? (

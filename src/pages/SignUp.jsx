@@ -22,9 +22,28 @@ const SignUp = ({ loginState }) => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log(event.target.id.value);
-    console.log(event.target.password.value);
-    console.log(event.target.nickname.value);
+    const id = event.target.id.value;
+    const password = event.target.password.value;
+    const nickname = event.target.nickname.value;
+
+    const singUp = async () => {
+      const res = await fetch("http://localhost:3000/users", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: `${id}`,
+          userPassword: `${password}`,
+          userName: `${nickname}`,
+        }),
+      });
+      const text = await res.text();
+      console.log(text);
+    };
+    singUp();
+
     setInputs({
       id: "",
       password: "",
