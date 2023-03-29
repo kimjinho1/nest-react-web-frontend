@@ -23,10 +23,6 @@ const SignUp = ({ loginState }) => {
   const { id, password, nickname } = inputs;
   const [signUpFailed, setSignUpFailed] = useState(null);
 
-  // useEffect(() => {
-  //   setSignUpFailed(null);
-  // }, []);
-
   const onSubmit = (event) => {
     event.preventDefault();
     const id = event.target.id.value;
@@ -75,10 +71,11 @@ const SignUp = ({ loginState }) => {
         <SignUpInput
           props={{
             name: "id",
-            placeholder: "4~20자리 / 영문, 숫자, 특수문자 조합",
+            placeholder: "4~20자리 / 영문, 숫자 조합",
             minLength: "4",
             maxLength: "20",
             inputs: inputs,
+            banKorean: true,
             setInputs: setInputs,
             value: id,
           }}
@@ -87,9 +84,10 @@ const SignUp = ({ loginState }) => {
         <SignUpInput
           props={{
             name: "password",
-            placeholder: "8~16자리 / 영문, 숫자, 특수문자 조합",
+            placeholder: "8~16자리 / 영문, 숫자 조합",
             minLength: "8",
             maxLength: "16",
+            banKorean: true,
             inputs: inputs,
             setInputs: setInputs,
             value: password,
@@ -102,6 +100,7 @@ const SignUp = ({ loginState }) => {
             placeholder: "이름 입력",
             minLength: "1",
             maxLength: "20",
+            banKorean: false,
             inputs: inputs,
             setInputs: setInputs,
             value: nickname,

@@ -24,11 +24,15 @@ const StyledInput = styled.input`
 const SignUpInput = ({ props }) => {
   const onChange = (event) => {
     const { name, value } = event.target;
-    const nextInputs = {
-      ...props.inputs,
-      [name]: value,
-    };
-    props.setInputs(nextInputs);
+    const regex = /^[a-zA-Z0-9]+$/;
+
+    if (!props.banKorean || value.length === 0 || regex.test(value)) {
+      const nextInputs = {
+        ...props.inputs,
+        [name]: value,
+      };
+      props.setInputs(nextInputs);
+    }
   };
 
   return (
