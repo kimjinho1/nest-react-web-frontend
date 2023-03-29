@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 import SignUpLabel from "../components/SignUp/SignUpLabel";
 import SignUpInput from "../components/SignUp/SignUpInput";
 import SignUpButton from "../components/SignUp/SignUpButton";
+import Message from "../components/SignUp/Message";
 
 const SignUpDiv = styled.div`
   display: flex;
@@ -19,6 +21,11 @@ const SignUpForm = styled.form`
 const SignUp = ({ loginState }) => {
   const [inputs, setInputs] = useState({ id: "", password: "", nickname: "" });
   const { id, password, nickname } = inputs;
+  const [signUpFailed, setSignUpFailed] = useState(null);
+
+  // useEffect(() => {
+  //   setSignUpFailed(null);
+  // }, []);
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -27,20 +34,30 @@ const SignUp = ({ loginState }) => {
     const nickname = event.target.nickname.value;
 
     const singUp = async () => {
-      const res = await fetch("http://localhost:3000/users", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: `${id}`,
-          userPassword: `${password}`,
-          userName: `${nickname}`,
-        }),
-      });
-      const text = await res.text();
-      console.log(text);
+      await axios
+        .post(
+          "http://localhost:3000/users",
+          {
+            userId: `${id}`,
+            userPassword: `${password}`,
+            userName: `${nickname}`,
+          },
+          {
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res.data);
+          setSignUpFailed(false);
+          alert("회원가입 성공!");
+        })
+        .catch((error) => {
+          setSignUpFailed(true);
+          alert("회원가입 실패!");
+        });
     };
     singUp();
 
@@ -92,6 +109,7 @@ const SignUp = ({ loginState }) => {
         />
         <SignUpButton type="submit" inputs={inputs} />
       </SignUpForm>
+      <Message signUpFailed={signUpFailed}></Message>
     </SignUpDiv>
   );
 };
