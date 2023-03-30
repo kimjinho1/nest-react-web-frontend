@@ -29,7 +29,7 @@ const SignUp = ({ loginState }) => {
     const password = event.target.password.value;
     const nickname = event.target.nickname.value;
 
-    const singUp = async () => {
+    const signUp = async () => {
       await axios
         .post(
           "http://localhost:3000/users",
@@ -55,7 +55,7 @@ const SignUp = ({ loginState }) => {
           alert("회원가입 실패!");
         });
     };
-    singUp();
+    signUp();
 
     setInputs({
       id: "",
