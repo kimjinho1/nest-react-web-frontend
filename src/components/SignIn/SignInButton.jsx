@@ -34,12 +34,7 @@ const SignInButton = ({ inputs }) => {
 
   useEffect(() => {
     const { id, password } = inputs;
-    if (
-      id.length >= 4 &&
-      id.length <= 20 &&
-      password.length >= 8 &&
-      password.length <= 20
-    ) {
+    if (id.length && password.length) {
       setBtnActive(true);
     } else {
       setBtnActive(false);
