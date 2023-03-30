@@ -24,7 +24,7 @@ const SuccessMessageDiv = styled.div`
   background-image: url("https://i.imgur.com/Q9BGTuy.png");
 `;
 
-const ErrorMessage = ({ signUpFailed }) => {
+const Message = ({ signUpFailed }) => {
   return (
     <MessageDiv>
       {signUpFailed === null ? null : signUpFailed === true ? (
@@ -36,4 +36,4 @@ const ErrorMessage = ({ signUpFailed }) => {
   );
 };
 
-export default ErrorMessage;
+export default Message;
