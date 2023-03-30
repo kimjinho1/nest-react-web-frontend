@@ -31,7 +31,10 @@ function App() {
           path="/music"
           element={<MusicDisplay loginState={loginState} />}
         />
-        <Route path="/signin" element={<SignIn loginState={loginState} />} />
+        <Route
+          path="/signin"
+          element={<SignIn loginState={(loginState, setLoginState)} />}
+        />
         <Route path="/signup" element={<SignUp loginState={loginState} />} />
         {/* <Route
           path="/auth"

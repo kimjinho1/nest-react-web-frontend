@@ -17,7 +17,7 @@ const SignInForm = styled.form`
   padding: 10px;
 `;
 
-const SignIn = ({ loginState }) => {
+const SignIn = ({ loginState, setLoginState }) => {
   const [inputs, setInputs] = useState({ id: "", password: "" });
   const { id, password } = inputs;
   const [signInFailed, setSignInFailed] = useState(null);
@@ -32,7 +32,7 @@ const SignIn = ({ loginState }) => {
     const signIn = async () => {
       await axios
         .post(
-          "http://localhost:3000/users",
+          "http://localhost:3000/auth/login",
           {
             userId: `${id}`,
             userPassword: `${password}`,
@@ -45,7 +45,7 @@ const SignIn = ({ loginState }) => {
           }
         )
         .then((res) => {
-          console.log(res.data);
+          console.log(res.data.access_token);
           setSignInFailed(false);
           alert("로그인 성공!");
         })
@@ -54,7 +54,7 @@ const SignIn = ({ loginState }) => {
           alert("로그인 실패!");
         });
     };
-    //   signIn();
+    signIn();
 
     setInputs({
       id: "",
@@ -65,29 +65,33 @@ const SignIn = ({ loginState }) => {
 
   return (
     <SignInDiv>
-      <SignInForm onSubmit={onSubmit}>
-        <SignInLabel text="아이디"></SignInLabel>
-        <SignInInput
-          props={{
-            inputs: inputs,
-            setInputs: setInputs,
-            name: "id",
-            placeholder: "영문, 숫자 조합",
-            value: id,
-          }}
-        ></SignInInput>
-        <SignInLabel text="비밀번호"></SignInLabel>
-        <SignInInput
-          props={{
-            inputs: inputs,
-            setInputs: setInputs,
-            name: "password",
-            placeholder: "영문, 숫자 조합",
-            value: password,
-          }}
-        ></SignInInput>
-        <SignInButton type="submit" inputs={inputs} />
-      </SignInForm>
+      {loginState ? (
+        <h1>로그인한 상태입니다</h1>
+      ) : (
+        <SignInForm onSubmit={onSubmit}>
+          <SignInLabel text="아이디"></SignInLabel>
+          <SignInInput
+            props={{
+              inputs: inputs,
+              setInputs: setInputs,
+              name: "id",
+              placeholder: "영문, 숫자 조합",
+              value: id,
+            }}
+          ></SignInInput>
+          <SignInLabel text="비밀번호"></SignInLabel>
+          <SignInInput
+            props={{
+              inputs: inputs,
+              setInputs: setInputs,
+              name: "password",
+              placeholder: "영문, 숫자 조합",
+              value: password,
+            }}
+          ></SignInInput>
+          <SignInButton type="submit" inputs={inputs} />
+        </SignInForm>
+      )}
       <Message signInFailed={signInFailed}></Message>
     </SignInDiv>
   );
