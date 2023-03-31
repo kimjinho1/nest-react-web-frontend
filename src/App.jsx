@@ -12,10 +12,7 @@ function App() {
   const [loginState, setLoginState] = useState(false);
   useEffect(() => {
     if (localStorage.getItem("JWT_TOKEN")) {
-      console.log("Login O");
       setLoginState(true);
-    } else {
-      console.log("Login X");
     }
   }, []);
 
