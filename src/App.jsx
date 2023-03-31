@@ -8,12 +8,10 @@ import MusicDisplay from "./pages/Music";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 
-const USER_TOKEN = "USER_TOKEN";
-
 function App() {
   const [loginState, setLoginState] = useState(false);
   useEffect(() => {
-    if (window.localStorage.getItem(USER_TOKEN)) {
+    if (localStorage.getItem("JWT_TOKEN")) {
       console.log("Login O");
       setLoginState(true);
     } else {
@@ -33,7 +31,9 @@ function App() {
         />
         <Route
           path="/signin"
-          element={<SignIn loginState={(loginState, setLoginState)} />}
+          element={
+            <SignIn loginState={loginState} setLoginState={setLoginState} />
+          }
         />
         <Route path="/signup" element={<SignUp loginState={loginState} />} />
         {/* <Route

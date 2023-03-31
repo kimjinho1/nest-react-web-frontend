@@ -5,6 +5,7 @@ import SignInInput from "../components/SignIn/SignInInput";
 import SignInButton from "../components/SignIn/SignInButton";
 import Message from "../components/SignIn/Message";
 import axios from "axios";
+import SignOutButton from "../components/SignIn/SignOutButton";
 
 const SignInDiv = styled.div`
   display: flex;
@@ -20,7 +21,7 @@ const SignInForm = styled.form`
 const SignIn = ({ loginState, setLoginState }) => {
   const [inputs, setInputs] = useState({ id: "", password: "" });
   const { id, password } = inputs;
-  const [signInFailed, setSignInFailed] = useState(null);
+  const [signInFailed, setSignInFailed] = useState(false);
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -46,12 +47,15 @@ const SignIn = ({ loginState, setLoginState }) => {
         )
         .then((res) => {
           console.log(res.data.access_token);
-          setSignInFailed(false);
           alert("로그인 성공!");
+          setSignInFailed(false);
+          setLoginState(true);
+          localStorage.setItem("JWT_TOKEN", `${res.data.access_token}`);
         })
         .catch((error) => {
-          setSignInFailed(true);
           alert("로그인 실패!");
+          setSignInFailed(true);
+          setLoginState(false);
         });
     };
     signIn();
@@ -65,8 +69,8 @@ const SignIn = ({ loginState, setLoginState }) => {
 
   return (
     <SignInDiv>
-      {loginState ? (
-        <h1>로그인한 상태입니다</h1>
+      {loginState === true ? (
+        <SignOutButton setLoginState={setLoginState}></SignOutButton>
       ) : (
         <SignInForm onSubmit={onSubmit}>
           <SignInLabel text="아이디"></SignInLabel>
