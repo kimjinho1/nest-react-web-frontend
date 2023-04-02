@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import BoardList from "../components/boards/BoardList";
+import CreateBoard from "./BoardPost";
 
 const BoardsDiv = styled.div`
   display: flex;
@@ -9,13 +11,16 @@ const BoardsDiv = styled.div`
 
 const Boards = ({ loginState }) => {
   return (
-    <BoardsDiv>
+    <div>
       {!loginState ? (
         <h1>로그인하고 오세요</h1>
       ) : (
-        <h1>게시판111111111111111</h1>
+        <BoardsDiv>
+          <button>게시글 작성하기</button>
+          <BoardList loginState={loginState}></BoardList>
+        </BoardsDiv>
       )}
-    </BoardsDiv>
+    </div>
   );
 };
 

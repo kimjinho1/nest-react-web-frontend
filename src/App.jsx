@@ -7,6 +7,7 @@ import ToDo from "./pages/ToDo";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Boards from "./pages/Boards";
+import BoardPost from "./pages/BoardPost";
 
 function App() {
   const [loginState, setLoginState] = useState(false);
@@ -23,6 +24,11 @@ function App() {
         <Route path="/" element={<Home loginState={loginState} />} />
         <Route path="/todo" element={<ToDo loginState={loginState} />} />
         <Route path="/boards" element={<Boards loginState={loginState} />} />
+        <Route
+          path="/boards-post"
+          element={<BoardPost loginState={loginState} />}
+        />
+        {/* <Route path="/boards/:boardId" element={<Board loginState={loginState} />} /> */}
         <Route
           path="/signin"
           element={
