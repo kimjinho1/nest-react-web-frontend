@@ -19,8 +19,6 @@ const ToDoDiv = styled.div`
   justify-content: center;
 `;
 
-const TODOS_KEY = "TODOS";
-
 const ToDo = ({ loginState }) => {
   const [toDo, setToDo] = useState("");
   const [toDos, setToDos] = useState([]);
@@ -41,7 +39,9 @@ const ToDo = ({ loginState }) => {
   };
 
   useEffect(() => {
-    getTodos();
+    if (loginState === true) {
+      getTodos();
+    }
   }, []);
 
   return (
