@@ -46,7 +46,6 @@ const SignUp = ({ loginState }) => {
           }
         )
         .then((res) => {
-          console.log(res.data);
           setSignUpFailed(false);
           alert("회원가입 성공!");
         })

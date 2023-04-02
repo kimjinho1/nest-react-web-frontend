@@ -37,7 +37,7 @@ const ToDoForm = ({ toDo, setToDo, setToDos }) => {
           }
         )
         .catch((error) => {
-          console.log(error);
+          alert(error);
         });
     };
     addTodo();

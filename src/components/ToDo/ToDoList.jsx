@@ -34,7 +34,7 @@ const ToDoList = ({ toDos, setToDos }) => {
           },
         })
         .catch((error) => {
-          console.log(error);
+          alert(error);
         });
     };
     deleteTodo();

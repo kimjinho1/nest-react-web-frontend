@@ -33,7 +33,6 @@ const ToDo = ({ loginState }) => {
         },
       })
       .then((res) => {
-        console.log(res.data);
         setToDos(res.data);
       })
       .catch((error) => {
