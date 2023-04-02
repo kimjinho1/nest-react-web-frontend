@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 
@@ -24,24 +25,34 @@ const ToDo = ({ loginState }) => {
   const [toDo, setToDo] = useState("");
   const [toDos, setToDos] = useState([]);
 
-  useEffect(() => {
-    const savedToDos = window.localStorage.getItem(TODOS_KEY);
-    if (savedToDos) {
-      const parsedToDos = JSON.parse(savedToDos);
-      setToDos(parsedToDos);
-    }
-  }, []);
+  const getTodos = async () => {
+    await axios
+      .get("http://localhost:3000/todos", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("JWT_TOKEN")}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setToDos(res.data);
+      })
+      .catch((error) => {
+        setToDos([]);
+      });
+  };
 
   useEffect(() => {
-    window.localStorage.setItem(TODOS_KEY, JSON.stringify(toDos));
-  }, [toDos]);
+    getTodos();
+  }, []);
 
   return (
     <ToDoDiv>
       <Clock />
-      <Greeting loginState={loginState} toDos={toDos}/>
-      {loginState ? <ToDoForm toDo={toDo} setToDo={setToDo} setToDos={setToDos}/> : null}
-      {loginState ? <ToDoList toDos={toDos} setToDos={setToDos}/> : null}
+      <Greeting loginState={loginState} toDos={toDos} />
+      {loginState ? (
+        <ToDoForm toDo={toDo} setToDo={setToDo} setToDos={setToDos} />
+      ) : null}
+      {loginState ? <ToDoList toDos={toDos} setToDos={setToDos} /> : null}
       <Footer />
     </ToDoDiv>
   );
