@@ -6,6 +6,7 @@ import SignInButton from "../components/SignIn/SignInButton";
 import Message from "../components/SignIn/Message";
 import axios from "axios";
 import SignOutButton from "../components/SignIn/SignOutButton";
+import Profile from "../components/SignIn/Profile";
 
 const SignInDiv = styled.div`
   display: flex;
@@ -27,8 +28,6 @@ const SignIn = ({ loginState, setLoginState }) => {
     event.preventDefault();
     const id = event.target.id.value;
     const password = event.target.password.value;
-    console.log(id);
-    console.log(password);
 
     const signIn = async () => {
       await axios
@@ -46,7 +45,6 @@ const SignIn = ({ loginState, setLoginState }) => {
           }
         )
         .then((res) => {
-          console.log(res.data.access_token);
           alert("로그인 성공!");
           setSignInFailed(false);
           setLoginState(true);
@@ -70,7 +68,7 @@ const SignIn = ({ loginState, setLoginState }) => {
   return (
     <SignInDiv>
       {loginState === true ? (
-        <SignOutButton setLoginState={setLoginState}></SignOutButton>
+        <Profile setLoginState={setLoginState}></Profile>
       ) : (
         <SignInForm onSubmit={onSubmit}>
           <SignInLabel text="아이디"></SignInLabel>
