@@ -15,7 +15,6 @@ const Profile = ({ setLoginState }) => {
   const [profile, setProfile] = useState(null);
 
   const getProfile = async () => {
-    console.log(localStorage.getItem("JWT_TOKEN"));
     await axios
       .get("http://localhost:3000/auth/profile", {
         headers: {
