@@ -1,3 +1,4 @@
+import axios from "axios";
 import styled from "styled-components";
 
 const ToDoListUl = styled.ul`
@@ -5,7 +6,7 @@ const ToDoListUl = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
   li {
     margin-right: 30px;
     font-size: 25px;
@@ -23,8 +24,23 @@ const ToDoFinishButton = styled.button`
 `;
 
 const ToDoList = ({ toDos, setToDos }) => {
-  const deleteToDo = () => {
-    const newToDos = toDos.slice(1);
+  const onClick = (index) => {
+    const deleteTodo = async () => {
+      await axios
+        .delete("http://localhost:3000/todos", {
+          data: { todo: toDos[index] },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("JWT_TOKEN")}`,
+          },
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    deleteTodo();
+
+    toDos.splice(index, 1);
+    const newToDos = [...toDos];
     setToDos(newToDos);
   };
 
@@ -33,11 +49,11 @@ const ToDoList = ({ toDos, setToDos }) => {
       {toDos.map((item, index) => (
         <li key={index}>
           <span>{item}</span>
-          <ToDoFinishButton onClick={deleteToDo}>X</ToDoFinishButton>
+          <ToDoFinishButton onClick={() => onClick(index)}>X</ToDoFinishButton>
         </li>
       ))}
     </ToDoListUl>
-  )
-}
+  );
+};
 
 export default ToDoList;
