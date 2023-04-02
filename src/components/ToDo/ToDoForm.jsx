@@ -1,3 +1,4 @@
+import axios from "axios";
 import styled from "styled-components";
 
 const ToDoInput = styled.input`
@@ -17,12 +18,30 @@ const ToDoInput = styled.input`
   }
 `;
 
-const ToDoForm = ({toDo, setToDo, setToDos}) => {
+const ToDoForm = ({ toDo, setToDo, setToDos }) => {
   const onSubmit = (event) => {
     event.preventDefault();
     if (toDo === "") {
       return;
     }
+
+    const addTodo = async () => {
+      await axios
+        .post(
+          "http://localhost:3000/todos",
+          { todo: toDo },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("JWT_TOKEN")}`,
+            },
+          }
+        )
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    addTodo();
+
     setToDos((currentArray) => [toDo, ...currentArray]);
     setToDo("");
   };
@@ -40,7 +59,7 @@ const ToDoForm = ({toDo, setToDo, setToDos}) => {
         onChange={onChange}
       />
     </form>
-  )
-}
+  );
+};
 
 export default ToDoForm;
