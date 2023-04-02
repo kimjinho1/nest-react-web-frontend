@@ -34,6 +34,7 @@ const ToDo = ({ loginState }) => {
         setToDos(res.data);
       })
       .catch((error) => {
+        console.log(error);
         setToDos([]);
       });
   };

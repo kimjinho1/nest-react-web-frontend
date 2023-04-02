@@ -2,19 +2,21 @@ import axios from "axios";
 import styled from "styled-components";
 
 const ToDoListUl = styled.ul`
+  margin: 0;
+  padding: 0;
   list-style-type: none;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   li {
-    margin-right: 30px;
-    font-size: 25px;
+    padding-top: 8px;
+    font-size: 22px;
   }
 `;
 
 const ToDoFinishButton = styled.button`
-  font-size: 23px;
+  font-size: 20px;
   color: red;
   background-color: transparent;
   border: none;
