@@ -15,7 +15,7 @@ const Home = ({ loginState }) => {
       ) : (
         <h1>로그인한 상태입니다</h1>
       )}
-      <h1>React 생각보다 재미있다</h1>
+      <h1>트센 학습용 웹사이트</h1>
       <img src="logo192.png" alt="logo" />
     </HomeDiv>
   );
