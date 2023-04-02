@@ -25,7 +25,7 @@ const LeftNavbar = ({ NavComponent }) => {
     <LeftNavBarDiv>
       <LeftNavLink to="/">Home</LeftNavLink>
       <LeftNavLink to="/todo">ToDo</LeftNavLink>
-      <LeftNavLink to="/music">Music</LeftNavLink>
+      <LeftNavLink to="/boards">Boards</LeftNavLink>
     </LeftNavBarDiv>
   );
 };

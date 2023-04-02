@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./pages/Navbar";
 import Home from "./pages/Home";
 import ToDo from "./pages/ToDo";
-import MusicDisplay from "./pages/Music";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
+import Boards from "./pages/Boards";
 
 function App() {
   const [loginState, setLoginState] = useState(false);
@@ -22,10 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home loginState={loginState} />} />
         <Route path="/todo" element={<ToDo loginState={loginState} />} />
-        <Route
-          path="/music"
-          element={<MusicDisplay loginState={loginState} />}
-        />
+        <Route path="/boards" element={<Boards loginState={loginState} />} />
         <Route
           path="/signin"
           element={
