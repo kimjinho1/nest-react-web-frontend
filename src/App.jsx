@@ -8,6 +8,7 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Boards from "./pages/Boards";
 import BoardPost from "./pages/BoardPost";
+import Board from "./components/boards/Board";
 
 function App() {
   const [loginState, setLoginState] = useState(false);
@@ -28,7 +29,10 @@ function App() {
           path="/boards-post"
           element={<BoardPost loginState={loginState} />}
         />
-        {/* <Route path="/boards/:boardId" element={<Board loginState={loginState} />} /> */}
+        <Route
+          path="/boards/:boardId"
+          element={<Board loginState={loginState} />}
+        />
         <Route
           path="/signin"
           element={
