@@ -2,11 +2,11 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 
-const PostListContainer = styled.div`
+const BoardListDiv = styled.div`
   padding: 15px;
 `;
 
-const PostCard = styled.div`
+const BoardCard = styled.div`
   display: flex;
   margin-bottom: 10px;
   border-radius: 5px;
@@ -16,7 +16,7 @@ const PostCard = styled.div`
   }
 `;
 
-const PostThumbnail = styled.img`
+const BoardThumbnail = styled.img`
   width: 150px;
   height: 100px;
   object-fit: cover;
@@ -24,11 +24,11 @@ const PostThumbnail = styled.img`
   border-bottom-left-radius: 5px;
 `;
 
-const PostContentWrapper = styled.div`
+const BoardContentWrapper = styled.div`
   padding: 20px;
 `;
 
-const PostTitle = styled.h2`
+const BoardTitle = styled.h2`
   margin: 0;
   font-size: 24px;
   font-weight: bold;
@@ -38,17 +38,17 @@ const PostTitle = styled.h2`
   }
 `;
 
-const PostMeta = styled.div`
+const BoardMeta = styled.div`
   margin-top: 5px;
   font-size: 14px;
 `;
 
-const PostNickname = styled.div`
+const BoardNickname = styled.div`
   font-weight: bold;
   margin-right: 10px;
 `;
 
-const PostDate = styled.div`
+const BoardDate = styled.div`
   color: #777;
 `;
 
@@ -79,24 +79,24 @@ const BoardList = ({ loginState }) => {
   }, []);
 
   return (
-    <PostListContainer>
+    <BoardListDiv>
       {boards.map((board) => (
-        <PostCard key={board.id}>
-          <PostThumbnail
+        <BoardCard key={board.id}>
+          <BoardThumbnail
             src={
               "https://velog.velcdn.com/images/cyheum/post/37534693-2ae7-4134-91ab-af7eb74b7efb/react-logo.png"
             }
           />
-          <PostContentWrapper>
-            <PostTitle>{board.title}</PostTitle>
-            <PostMeta>
-              <PostNickname>{board.userName}</PostNickname>
-              <PostDate>{"2023-04-03"}</PostDate>
-            </PostMeta>
-          </PostContentWrapper>
-        </PostCard>
+          <BoardContentWrapper>
+            <BoardTitle>{board.title}</BoardTitle>
+            <BoardMeta>
+              <BoardNickname>{board.userName}</BoardNickname>
+              <BoardDate>{"2023-04-03"}</BoardDate>
+            </BoardMeta>
+          </BoardContentWrapper>
+        </BoardCard>
       ))}
-    </PostListContainer>
+    </BoardListDiv>
   );
 };
 
