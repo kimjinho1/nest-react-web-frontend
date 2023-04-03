@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const BoardListDiv = styled.div`
@@ -53,7 +54,7 @@ const BoardDate = styled.div`
 `;
 
 const BoardList = ({ loginState }) => {
-  let [boards, setBoards] = useState([]);
+  const [boards, setBoards] = useState([]);
 
   const getBoards = async () => {
     await axios
@@ -78,13 +79,21 @@ const BoardList = ({ loginState }) => {
     }
   }, []);
 
+  const movePage = useNavigate();
+
   return (
     <BoardListDiv>
       {boards.map((board) => (
         <BoardCard key={board.id}>
           <BoardThumbnail src={board.thumbnail} />
           <BoardContentWrapper>
-            <BoardTitle>{board.title}</BoardTitle>
+            <BoardTitle
+              onClick={() => {
+                movePage(`/boards/${board.id}`);
+              }}
+            >
+              {board.title}
+            </BoardTitle>
             <BoardMeta>
               <BoardNickname>{board.userName}</BoardNickname>
               <BoardDate>{board.date}</BoardDate>
