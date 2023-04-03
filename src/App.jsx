@@ -7,8 +7,8 @@ import ToDo from "./pages/ToDo";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Boards from "./pages/Boards";
-import BoardPost from "./pages/BoardPost";
 import Board from "./components/boards/Board";
+import BoardPost from "./components/boards/BoardPost";
 
 function App() {
   const [loginState, setLoginState] = useState(false);

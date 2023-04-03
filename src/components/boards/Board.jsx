@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const BoardDiv = styled.div`
   max-width: 600px;
-  padding-left: 20px;
+  padding: 0px 20px;
 `;
 
 const Title = styled.h1`
@@ -27,6 +27,23 @@ const Thumbnail = styled.img`
 
 const Content = styled.div`
   font-size: 18px;
+`;
+
+const GoUpdateButton = styled.div`
+  margin-top: 15px;
+  display: inline-block;
+  font-size: 20px;
+  color: #fff;
+  background-color: #5f8ebe;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #025ab2;
+  }
 `;
 
 const Board = ({ loginState }) => {
@@ -58,6 +75,7 @@ const Board = ({ loginState }) => {
 
   return (
     <BoardDiv>
+      <GoUpdateButton>글 수정하기</GoUpdateButton>
       <Title>{board.title}</Title>
       <Meta>
         {board.userName} | {board.date}
