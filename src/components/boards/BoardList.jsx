@@ -82,16 +82,12 @@ const BoardList = ({ loginState }) => {
     <BoardListDiv>
       {boards.map((board) => (
         <BoardCard key={board.id}>
-          <BoardThumbnail
-            src={
-              "https://velog.velcdn.com/images/cyheum/post/37534693-2ae7-4134-91ab-af7eb74b7efb/react-logo.png"
-            }
-          />
+          <BoardThumbnail src={board.thumbnail} />
           <BoardContentWrapper>
             <BoardTitle>{board.title}</BoardTitle>
             <BoardMeta>
               <BoardNickname>{board.userName}</BoardNickname>
-              <BoardDate>{"2023-04-03"}</BoardDate>
+              <BoardDate>{board.date}</BoardDate>
             </BoardMeta>
           </BoardContentWrapper>
         </BoardCard>
