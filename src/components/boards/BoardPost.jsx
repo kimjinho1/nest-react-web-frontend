@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -80,11 +81,37 @@ const BoardPost = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const { title, thumbnailUrl, content } = this.state;
+    const { title, thumbnailUrl, content } = event.target;
+    console.log(title.value)
+    console.log(thumbnailUrl.value)
+    console.log(content.value)
+
+    const addBoard = async () => {
+      const time = new Date().getTime().toString()
+      await axios
+        .post(
+          "http://localhost:3000/boards",
+          { 
+            title: title.value,
+            thumbnail: thumbnailUrl.value,
+            content: content.value,
+            date: time
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("JWT_TOKEN")}`,
+            },
+          }
+        )
+        .catch((error) => {
+          alert(error);
+        });
+    };
+    addBoard();
 
     setInputs({
       title: "",
-      thumbnail: "",
+      thumbnailUrl: "",
       content: "",
     });
   };
@@ -103,7 +130,7 @@ const BoardPost = () => {
         <Label htmlFor="title">썸네일 이미지 URL</Label>
         <Input
           type="text"
-          name="thumbnail"
+          name="thumbnailUrl"
           placeholder="썸네일 이미지 URL"
           value={thumbnailUrl}
           onChange={handleInputChange}

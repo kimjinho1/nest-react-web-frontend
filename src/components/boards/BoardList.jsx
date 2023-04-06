@@ -80,6 +80,14 @@ const BoardList = ({ loginState }) => {
   }, []);
 
   const movePage = useNavigate();
+  const getDate = (timestamp) => {
+    const time = new Date(+timestamp)
+    time.setHours(time.getHours() + 9);
+    console.log(time)
+    return time.toISOString().replace('T', ' ').substring(0, 19);
+    return 1
+  }
+  console.log(boards);
 
   return (
     <BoardListDiv>
@@ -96,7 +104,7 @@ const BoardList = ({ loginState }) => {
             </BoardTitle>
             <BoardMeta>
               <BoardNickname>{board.userName}</BoardNickname>
-              <BoardDate>{board.date}</BoardDate>
+              <BoardDate>{getDate(board.date)}</BoardDate>
             </BoardMeta>
           </BoardContentWrapper>
         </BoardCard>
