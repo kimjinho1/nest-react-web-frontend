@@ -48,12 +48,14 @@ const ToDoList = ({ toDos, setToDos }) => {
 
   return (
     <ToDoListUl>
-      {toDos.map((item, index) => (
+      {toDos.length !== 0 ? toDos.map((item, index) => (
         <li key={index}>
           <span>{item}</span>
           <ToDoFinishButton onClick={() => onClick(index)}>X</ToDoFinishButton>
         </li>
-      ))}
+      )) : 
+        <h1>할 일이 없어요</h1>
+      }
     </ToDoListUl>
   );
 };
