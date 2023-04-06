@@ -73,6 +73,12 @@ const Board = ({ loginState }) => {
     }
   }, []);
 
+  const getDate = (timestamp) => {
+    const time = new Date(+timestamp)
+    time.setHours(time.getHours() + 9);
+    return time.toISOString().replace('T', ' ').substring(0, 19);
+  }
+
   return (
     <BoardDiv>
       <GoUpdateButton>글 수정하기</GoUpdateButton>

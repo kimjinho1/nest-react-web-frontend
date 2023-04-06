@@ -83,21 +83,18 @@ const BoardList = ({ loginState }) => {
   const getDate = (timestamp) => {
     const time = new Date(+timestamp)
     time.setHours(time.getHours() + 9);
-    console.log(time)
     return time.toISOString().replace('T', ' ').substring(0, 19);
-    return 1
   }
-  console.log(boards);
 
   return (
     <BoardListDiv>
       {boards.map((board) => (
-        <BoardCard key={board.id}>
+        <BoardCard key={board.boardId}>
           <BoardThumbnail src={board.thumbnail} />
           <BoardContentWrapper>
             <BoardTitle
               onClick={() => {
-                movePage(`/boards/${board.id}`);
+                movePage(`/boards/${board.boardId}`);
               }}
             >
               {board.title}
